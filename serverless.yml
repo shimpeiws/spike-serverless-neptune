@@ -12,10 +12,11 @@ provider:
   region: ap-northeast-1
   vpc:
     securityGroupIds:
-      - YOUR-SECURITY-GROUP-ID
+      - sg-0c9e73dc361813481
     subnetIds:
-      - YOUR-SUBNET-01
-      - YOUR-SUBNET-02
+      - subnet-0374963a5af11f1ba
+      - subnet-071274c52411268d4
+      - subnet-0ec8cfd35a076344c
   environment:
     NEPTUNE_ENDPOINT: ${env:NEPTUNE_ENDPOINT}
 
