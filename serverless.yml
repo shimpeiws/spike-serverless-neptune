@@ -7,7 +7,7 @@ plugins:
 
 provider:
   name: aws
-  runtime: nodejs12.X
+  runtime: nodejs12.x
   stage: dev
   region: ap-northeast-1
   vpc:
@@ -16,6 +16,8 @@ provider:
     subnetIds:
       - YOUR-SUBNET-01
       - YOUR-SUBNET-02
+  environment:
+    NEPTUNE_ENDPOINT: ${env:NEPTUNE_ENDPOINT}
 
 functions:
   hello:
