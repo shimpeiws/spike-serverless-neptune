@@ -12,10 +12,7 @@ export const hello: APIGatewayProxyHandler = async (event) => {
   const graph = new Graph();
   const g = graph.traversal().withRemote(dc);
 
-  const addRes = await g.addV("hello").property("name", "justin").next();
-  console.info("addRes", addRes);
-
-  const res = await g.V().limit(1).count().next();
+  const res = await g.V("person-1").next();
   console.info("res", res);
 
   return {
