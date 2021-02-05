@@ -34,84 +34,120 @@ export const seed: APIGatewayProxyHandler = async (event) => {
   const g = graph.traversal().withRemote(dc);
 
   // Node person
-  g.addV("person")
+  await g
+    .addV("person")
     .property("id", "person-1")
     .property("name", "Liam")
+    .next();
+  await g
     .addV("person")
     .property("id", "person-2")
     .property("name", "Emma")
-    .addV("software")
-    .property("id", "person-4")
+    .next();
+  await g
+    .addV("person")
     .property("id", "person-4")
     .property("name", "Noah")
+    .next();
+  await g
     .addV("person")
     .property("id", "person-4")
     .property("name", "Olivia")
+    .next();
+  await g
     .addV("person")
     .property("id", "person-5")
     .property("name", "William")
+    .next();
+  await g
     .addV("person")
     .property("id", "person-6")
-    .property("name", "Ava");
+    .property("name", "Ava")
+    .next();
 
   // Node university
-  g.addV("university")
+  await g
+    .addV("university")
     .property("id", "university-1")
     .property("name", "Foo University")
+    .next();
+  await g
     .addV("university")
     .property("id", "university-2")
-    .property("name", "Bar University");
+    .property("name", "Bar University")
+    .next();
 
   // Node university-entrance
-  g.addV("university-entrance")
+  await g
+    .addV("university-entrance")
     .property("id", "university-entrance-1")
     .property("entered-at-year", "2011")
+    .next();
+  await g
     .addV("university-entrance")
     .property("id", "university-entrance-2")
     .property("entered-at-year", "2011")
+    .next();
+  await g
     .addV("university-entrance")
     .property("id", "university-entrance-3")
-    .property("entered-at-year", "2015")
+    .property("entered-at-year", "2011")
+    .next();
+  await g
     .addV("university-entrance")
     .property("id", "university-entrance-4")
     .property("entered-at-year", "2015")
+    .next();
+  await g
     .addV("university-entrance")
     .property("id", "university-entrance-5")
-    .property("entered-at-year", "2020")
+    .property("entered-at-year", "2015")
+    .next();
+  await g
     .addV("university-entrance")
     .property("id", "university-entrance-6")
-    .property("entered-at-year", "2020");
+    .property("entered-at-year", "2015")
+    .next();
 
   // Edge enter
-  g.V("person-1").addE("enter").to(g.V("university-entrance-1")).next();
-  g.V("person-2").addE("enter").to(g.V("university-entrance-2")).next();
-  g.V("person-3").addE("enter").to(g.V("university-entrance-3")).next();
-  g.V("person-4").addE("enter").to(g.V("university-entrance-4")).next();
-  g.V("person-5").addE("enter").to(g.V("university-entrance-5")).next();
-  g.V("person-6").addE("enter").to(g.V("university-entrance-6"));
+  await g.V("person-1").addE("enter").to(g.V("university-entrance-1")).next();
+  await g.V("person-2").addE("enter").to(g.V("university-entrance-2")).next();
+  await g.V("person-3").addE("enter").to(g.V("university-entrance-3")).next();
+  await g.V("person-4").addE("enter").to(g.V("university-entrance-4")).next();
+  await g.V("person-5").addE("enter").to(g.V("university-entrance-5")).next();
+  await g.V("person-6").addE("enter").to(g.V("university-entrance-6"));
 
   // Edge university
-  g.V("university-entrance-1")
+  await g
+    .V("university-entrance-1")
     .addE("university")
     .to(g.V("university-1"))
     .next();
-  g.V("university-entrance-2")
+  await g
+    .V("university-entrance-2")
     .addE("university")
     .to(g.V("university-2"))
     .next();
-  g.V("university-entrance-3")
+  await g
+    .V("university-entrance-3")
     .addE("university")
     .to(g.V("university-1"))
     .next();
-  g.V("university-entrance-4")
+  await g
+    .V("university-entrance-4")
     .addE("university")
     .to(g.V("university-2"))
     .next();
-  g.V("university-entrance-5")
+  await g
+    .V("university-entrance-5")
     .addE("university")
     .to(g.V("university-1"))
     .next();
-  g.V("university-entrance-6").addE("enter").to(g.V("university-2"));
+  await g
+    .V("university-entrance-6")
+    .addE("enter")
+    .to(g.V("university-2"))
+    .next();
 
   const res = await g.V().limit(1).count().next();
   console.info("res", res);
